@@ -1,0 +1,23 @@
+name: Bash validation
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - name: Check Bash syntax
+        run: git ls-files -z '*.sh' | xargs -0 -r -n1 bash -n
+      - name: Run non-privileged fixture and stub tests
+        run: |
+          test "$(id -u)" -ne 0
+          bash tests/run.sh
