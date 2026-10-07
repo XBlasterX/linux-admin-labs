@@ -1,0 +1,3 @@
+Accepted publickey for alice from 192.0.2.10 port 41006 ssh2
+Failed password for invalid user test from 203.0.113.9 port 41007 ssh2
+pam_unix(sshd:session): session opened for user alice by (uid=0)
